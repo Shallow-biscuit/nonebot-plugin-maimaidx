@@ -30,7 +30,7 @@ class ScoreBaseImage:
         Image.open(maimaidir / 'rise_score_master.png'),
         Image.open(maimaidir / 'rise_score_remaster.png')
     ]
-    text_color = (124, 129, 255, 255)
+    text_color = (255, 255, 255, 255)
     t_color = [
         (255, 255, 255, 255), 
         (255, 255, 255, 255), 
@@ -84,51 +84,51 @@ class ScoreBaseImage:
             `height`: 起始高度
         """
         # y为第一排纵向坐标，dy为各行间距
-        dy = 114
+        dy = 170
         if data and type(data[0]) == ChartInfo:
-            y = 1085 if dx else 235
+            y = 1700 if dx else 430
         else:
             y = height
         for num, info in enumerate(data):
             if num % 5 == 0:
-                x = 16
+                x = 70
                 y += dy if num != 0 else 0
             else:
-                x += 276
+                x += 416
 
-            cover = Image.open(music_picture(info.song_id)).resize((75, 75))
-            version = Image.open(maimaidir / f'{info.type.upper()}.png').resize((37, 14))
+            cover = Image.open(music_picture(info.song_id)).resize((135, 135))
+            version = Image.open(maimaidir / f'{info.type.upper()}.png').resize((55, 19))
             if info.rate.islower():
-                rate = Image.open(maimaidir / f'UI_TTR_Rank_{score_Rank_l[info.rate]}.png').resize((63, 28))
+                rate = Image.open(maimaidir / f'UI_TTR_Rank_{score_Rank_l[info.rate]}.png').resize((95, 44))
             else:
-                rate = Image.open(maimaidir / f'UI_TTR_Rank_{info.rate}.png').resize((63, 28))
+                rate = Image.open(maimaidir / f'UI_TTR_Rank_{info.rate}.png').resize((95, 44))
 
             self._im.alpha_composite(self._diff[info.level_index], (x, y))
-            self._im.alpha_composite(cover, (x + 12, y + 12))
-            self._im.alpha_composite(version, (x + 51, y + 91))
-            self._im.alpha_composite(rate, (x + 92, y + 78))
+            self._im.alpha_composite(cover, (x + 5, y + 5))
+            self._im.alpha_composite(version, (x + 80, y + 141))
+            self._im.alpha_composite(rate, (x + 150, y + 99))
             if info.fc:
                 fc = Image.open(maimaidir / f'UI_MSS_MBase_Icon_{fcl[info.fc]}.png').resize((34, 34))
-                self._im.alpha_composite(fc, (x + 154, y + 77))
+                self._im.alpha_composite(fc, (x + 246, y + 99))
             if info.fs:
                 fs = Image.open(maimaidir / f'UI_MSS_MBase_Icon_{fsl[info.fs]}.png').resize((34, 34))
-                self._im.alpha_composite(fs, (x + 185, y + 77))
+                self._im.alpha_composite(fs, (x + 291, y + 99))
             
             dxscore = sum(mai.total_list.by_id(str(info.song_id)).charts[info.level_index].notes) * 3
             dxnum = dxScore(info.dxScore / dxscore * 100)
             if dxnum:
                 self._im.alpha_composite(
-                    Image.open(maimaidir / f'UI_GAM_Gauge_DXScoreIcon_0{dxnum}.png').resize((47, 26)), (x + 217, y + 80)
+                    Image.open(maimaidir / f'UI_GAM_Gauge_DXScoreIcon_0{dxnum}.png').resize((47, 26)), (x + 335, y + 102)
                 )
 
-            self._tb.draw(x + 26, y + 98, 13, info.song_id, self.id_color[info.level_index], anchor='mm')
+            self._tb.draw(x + 40, y + 148, 20, info.song_id, self.id_color[info.level_index], anchor='mm')
             title = info.title
             if coloumWidth(title) > 18:
                 title = changeColumnWidth(title, 17) + '...'
-            self._sy.draw(x + 93, y + 14, 14, title, self.t_color[info.level_index], anchor='lm')
-            self._tb.draw(x + 93, y + 38, 30, f'{info.achievements:.4f}%', self.t_color[info.level_index], anchor='lm')
-            self._tb.draw(x + 219, y + 65, 15, f'{info.dxScore}/{dxscore}', self.t_color[info.level_index], anchor='mm')
-            self._tb.draw(x + 93, y + 65, 15, f'{info.ds} -> {info.ra}', self.t_color[info.level_index], anchor='lm')
+            self._sy.draw(x + 155, y + 20, 20, title, self.t_color[info.level_index], anchor='lm')
+            self._tb.draw(x + 155, y + 50, 32, f'{info.achievements:.4f}%', self.t_color[info.level_index], anchor='lm')
+            self._tb.draw(x + 338, y + 82, 20, f'{info.dxScore}/{dxscore}', self.t_color[info.level_index], anchor='mm')
+            self._tb.draw(x + 155, y + 82, 22, f'{info.ds} -> {info.ra}', self.t_color[info.level_index], anchor='lm')
 
 
 class DrawBest(ScoreBaseImage):
@@ -189,49 +189,49 @@ class DrawBest(ScoreBaseImage):
 
     async def draw(self) -> Image.Image:
         
-        logo = Image.open(maimaidir / 'logo.png').resize((249, 120))
-        dx_rating = Image.open(maimaidir / self._findRaPic()).resize((186, 35))
+        logo = Image.open(maimaidir / 'logo.png').resize((404, 161))
+        dx_rating = Image.open(maimaidir / self._findRaPic()).resize((300, 59))
         Name = Image.open(maimaidir / 'Name.png')
-        MatchLevel = Image.open(maimaidir / self._findMatchLevel()).resize((80, 32))
-        ClassLevel = Image.open(maimaidir / 'UI_FBR_Class_00.png').resize((90, 54))
-        rating = Image.open(maimaidir / 'UI_CMN_Shougou_Rainbow.png').resize((270, 27))
+        MatchLevel = Image.open(maimaidir / self._findMatchLevel()).resize((134, 55))
+        ClassLevel = Image.open(maimaidir / 'UI_FBR_Class_00.png').resize((144, 87))
+        rating = Image.open(maimaidir / 'UI_CMN_Shougou_Rainbow.png').resize((454, 50))
 
-        self._im.alpha_composite(logo, (14, 60))
+        self._im.alpha_composite(logo, (5, 130))
         if self.plate:
-            plate = Image.open(platedir / f'{self.plate}.png').resize((800, 130))
+            plate = Image.open(platedir / f'{self.plate}.png').resize((1420, 230))
         else:
-            plate = Image.open(maimaidir / 'UI_Plate_300501.png').resize((800, 130))
-        self._im.alpha_composite(plate, (300, 60))
-        icon = Image.open(maimaidir / 'UI_Icon_309503.png').resize((120, 120))
-        self._im.alpha_composite(icon, (305, 65))
+            plate = Image.open(maimaidir / 'UI_Plate_500501.png').resize((1420, 230))
+        self._im.alpha_composite(plate, (390, 100))
+        icon = Image.open(maimaidir / 'UI_Icon_309503.png').resize((214, 214))
+        self._im.alpha_composite(icon, (398, 108))
         if self.qqid:
             try:
                 qqLogo = Image.open(BytesIO(await maiApi.qqlogo(qqid=self.qqid)))
-                self._im.alpha_composite(qqLogo.convert('RGBA').resize((120, 120)), (305, 65))
+                self._im.alpha_composite(qqLogo.convert('RGBA').resize((214, 214)), (398, 108))
             except Exception:
                 pass
-        self._im.alpha_composite(dx_rating, (435, 72))
+        self._im.alpha_composite(dx_rating, (620, 122))
         Rating = f'{self.Rating:05d}'
         for n, i in enumerate(Rating):
             self._im.alpha_composite(
-                Image.open(maimaidir / f'UI_NUM_Drating_{i}.png').resize((17, 20)), (520 + 15 * n, 80)
+                Image.open(maimaidir / f'UI_NUM_Drating_{i}.png').resize((28, 34)), (760 + 23 * n, 137)
             )
-        self._im.alpha_composite(Name, (435, 115))
-        self._im.alpha_composite(MatchLevel, (625, 120))
-        self._im.alpha_composite(ClassLevel, (620, 60))
-        self._im.alpha_composite(rating, (435, 160))
+        self._im.alpha_composite(Name, (620, 200))
+        self._im.alpha_composite(MatchLevel, (935, 205))
+        self._im.alpha_composite(ClassLevel, (926, 105))
+        self._im.alpha_composite(rating, (620, 275))
 
-        self._sy.draw(445, 135, 25, self.userName, (0, 0, 0, 255), 'lm')
+        self._sy.draw(635, 220, 30, self.userName, (0, 0, 0, 255), 'lm')
         sdrating, dxrating = sum([_.ra for _ in self.sdBest]), sum([_.ra for _ in self.dxBest])
         self._tb.draw(
-            570, 172, 17, 
+            847, 295, 28, 
             f'B35: {sdrating} + B15: {dxrating} = {self.Rating}', 
             (0, 0, 0, 255), 'mm', 3, (255, 255, 255, 255)
         )
         self._sy.draw(
-            700, 1570, 27, 
-            f'Designed by Yuri-YuzuChaN & BlueDeer233. Generated by {maiconfig.botName} BOT', 
-            self.text_color, 'mm', 5, (255, 255, 255, 255)
+            1200, 2350, 37, 
+            f' | Originally Designed by Yuri-YuzuChaN & BlueDeer233 | \n | Prism Plus Designed by Shallow biscuit | Generated by {maiconfig.botName} BOT |', 
+            self.text_color, 'mm', 2, (18, 200, 255, 255)
         )
 
         self.whiledraw(self.sdBest, False)
