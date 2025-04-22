@@ -86,7 +86,7 @@
 ![img](https://raw.githubusercontent.com/Yuri-YuzuChaN/nonebot-plugin-maimaidx/master/nonebot_plugin_maimaidx/maimaidxhelp.png)
 
 ## 个人修改
--  将best50、music_info的底图适配回原先的旧版本[4068*2497]
+-  将best50[4068*2497]、music_info【songid】[3340*2090]【info_bg】[1700*850]的底图适配回原先的旧版本
 
 - 将底图UI更换为PRiSM Plus样式
 
