@@ -22,7 +22,7 @@
 1. 安装 `nonebot-plugin-maimaidx`
     - 使用源代码 **需自行安装额外依赖**
         ``` git
-        git clone https://github.com/NekoPunchs/nonebot-plugin-maimaidx.git
+        git clone https://github.com/Shallow-biscuit/nonebot-plugin-maimaidx.git
         ```
 
 > [!WARNING]
