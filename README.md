@@ -31,7 +31,7 @@
 ## 配置
    
 1. 下载静态资源文件，将该压缩文件解压，且解压完为文件夹 `static`
-   - [AList网盘](https://shadowdr.cn/disk/maimaiDX)
+   - [夸克云盘](https://pan.quark.cn/s/cf4dd3e18588)
 
 2. 在 `.env` 文件中配置静态文件绝对路径 `MAIMAIDX_PATH`
 
