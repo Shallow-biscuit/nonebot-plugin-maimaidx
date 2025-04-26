@@ -8,7 +8,6 @@
 
 </div>
 
-
 ## 重要更新
 
 **2025-03-28**
@@ -21,58 +20,48 @@
 ## 安装
 
 1. 安装 `nonebot-plugin-maimaidx`
-
-    - 使用 `nb-cli` 安装
-        ``` python
-        nb plugin install nonebot-plugin-maimaidx
-        ```
-    - 使用 `pip` 安装
-        ``` python
-        pip install nonebot-plugin-maimaidx
-        ```
-    - 使用源代码（不推荐） **需自行安装额外依赖**
+    - 使用源代码 **需自行安装额外依赖**
         ``` git
-        git clone https://github.com/Yuri-YuzuChaN/nonebot-plugin-maimaidx
+        git clone https://github.com/NekoPunchs/nonebot-plugin-maimaidx.git
         ```
-    
-2. 安装 `PhantomJS`，前往 https://phantomjs.org/download.html 下载对应平台支持
-3. 安装 `微软雅黑` 字体，解决使用 `ginfo` 指令字体不渲染，例如 `ubuntu`：`apt install fonts-wqy-microhei`
 
 > [!WARNING]
-> 未配置 `PhantomJS` 支持的Bot，在使用 `ginfo` 指令时会被强制关闭 Bot 进程
+> `ginfo` 指令已删除
 
 ## 配置
    
 1. 下载静态资源文件，将该压缩文件解压，且解压完为文件夹 `static`
+   - [AList网盘](https://shadowdr.cn/disk/maimaiDX)
 
-   - [私人云盘](https://cloud.yuzuchan.moe/f/1bUn/Resource.7z)
-   - [AList网盘](https://share.yuzuchan.moe/p/Resource.7z?sign=EvCwaGwJrneyD1Olq00NG3HXNK7fQKpx_sa3Ck9Uzjs=:0)
-   - [onedrive](https://yuzuai-my.sharepoint.com/:u:/g/personal/yuzuchan_yuzuai_onmicrosoft_com/EdGUKRSo-VpHjT2noa_9EroBVO27iYMSQO3oFnZjpYTbqA?e=FE4KXY)
-
-2. 在 `.env` 文件中配置静态文件绝对路径 `MAIMAIDXPATH`
+2. 在 `.env` 文件中配置静态文件绝对路径 `MAIMAIDX_PATH`
 
     ``` dotenv
-    MAIMAIDXPATH=path.to.static
+    MAIMAIDX_PATH=path.to.static
 
     # 例如 windows 平台，非 "管理员模式" 运行Bot尽量避免存放在C盘
-    MAIMAIDXPATH=D:\bot\static
+    MAIMAIDX_PATH=D:\bot\static
     # 例如 linux 平台
-    MAIMAIDXPATH=/root/static
+    MAIMAIDX_PATH=/root/static
     ```
 
-3. 可选，如果拥有 `diving-fish 查分器` 的开发者 `Token`，请在 `.env` 文件中配置 `MAIMAIDXTOKEN`
+3. 可选，如果拥有 `diving-fish 查分器` 的开发者 `Token`，请在 `.env` 文件中配置 `MAIMAIDX_TOKEN`
    
     ``` dotenv
-    MAIMAIDXTOKEN=MAIMAITOKEN
+    MAIMAIDX_TOKEN=MAIMAITOKEN
     ```
 
-4. 可选，如果你的服务器或主机不能顺利流畅的访问查分器和别名库的API，请在 `.env` 文件中配置代理。均为香港服务器代理中转，例如你的服务器访问查分器很困难，请设置 `MAIMAIDXPROBERPROXY` 为 `ture`，别名库同理
+4. 可选，如果你的服务器或主机不能顺利流畅的访问查分器和别名库的API，请在 `.env` 文件中配置代理。均为香港服务器代理中转，例如你的服务器访问查分器很困难，请设置 `MAIMAIDX_PROBER_PROXY` 为 `ture`，别名库同理
 
     ``` dotenv
     # 查分器代理，推荐境外服务器使用
-    MAIMAIDXPROBERPROXY=false
+    MAIMAIDX_PROBER_PROXY=false
     # 别名代理，推荐国内服务器使用
-    MAIMAIDXALIASPROXY=false
+    MAIMAIDX_ALIAS_PROXY=false
+    ```
+5. 可选，如果需要节省服务器带宽外出流量，请在 `.env` 文件中配置 `MAIMAIDX_IMAGE_QUALITY`，范围20~100
+
+   ``` dotenv
+    MAIMAIDX_IMAGE_QUALITY=50
     ```
 
 > [!NOTE]
