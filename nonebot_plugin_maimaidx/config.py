@@ -10,11 +10,11 @@ driver = get_driver()
 
 
 class Config(BaseModel):
-    
-    maimaidxtoken: Optional[str] = None
-    maimaidxpath: str
-    maimaidxproberproxy: bool = False
-    maimaidxaliasproxy: bool = False
+    maimaidx_image_quality: int = 100
+    maimaidx_token: Optional[str] = None
+    maimaidx_path: str
+    maimaidx_prober_proxy: bool = False
+    maimaidx_alias_proxy: bool = False
     botName: str = list(driver.config.nickname)[0] if driver.config.nickname else 'Sakura'
 
 
@@ -26,13 +26,14 @@ vote_url: str = 'https://www.yuzuchan.moe/vote'
 
 # 文件路径
 Root: Path = Path(__file__).parent
-if maiconfig.maimaidxpath:
-    static: Path = Path(maiconfig.maimaidxpath)
+if maiconfig.maimaidx_path:
+    static: Path = Path(maiconfig.maimaidx_path)
 else:
     raise ValueError('`nonebot-plugin-maimaidx` 插件未检测到静态文件夹 `static`，请根据 README 配置页说明进行下载静态文件')
 alias_file: Path = static / 'music_alias.json'                  # 别名暂存文件
 local_alias_file: Path = static / 'local_music_alias.json'      # 本地别名文件
 music_file: Path = static / 'music_data.json'                   # 曲目暂存文件
+plate_file: Path = static / 'music_plate.json'                  # 姓名框暂存文件
 chart_file: Path = static / 'music_chart.json'                  # 谱面数据暂存文件
 guess_file: Path = static / 'group_guess_switch.json'           # 猜歌开关群文件
 group_alias_file: Path = static / 'group_alias_switch.json'     # 别名推送开关群文件
